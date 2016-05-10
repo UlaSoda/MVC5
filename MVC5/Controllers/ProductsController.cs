@@ -109,11 +109,28 @@ namespace MVC5.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Product.Find(id);
-            db.Product.Remove(product);
+
+            Client client = db.Client.Find(id);
+            db.Client.Remove(client);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+
+
+        }
+        public ActionResult AddPrice()
+        {
+            var p = db.Product;
+            foreach (var item in p)
+            {
+                item.Price *= 2;
+                
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

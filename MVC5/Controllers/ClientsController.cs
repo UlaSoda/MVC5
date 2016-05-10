@@ -12,12 +12,18 @@ namespace MVC5.Controllers
 {
     public class ClientsController : Controller
     {
-        private FabricsEntities db = new FabricsEntities();
+        //private FabricsEntities db = new FabricsEntities();
+        ClientsController clientRepo = RepositoryHelper.GetClientRepository(); //db.client
+        OccupationRepository occuRepo = RepositoryHelper.GetClientRepository();//db.occ
+
 
         // GET: Clients
         public ActionResult Index()
         {
             var client = db.Client.Include(c => c.Occupation);
+            //var client = db.Client.Include(c => c.Occupation).Take(10);
+
+
             return View(client.ToList());
         }
 
@@ -34,6 +40,7 @@ namespace MVC5.Controllers
                 return HttpNotFound();
             }
             return View(client);
+           
         }
 
         // GET: Clients/Create
@@ -53,7 +60,20 @@ namespace MVC5.Controllers
             if (ModelState.IsValid)
             {
                 db.Client.Add(client);
-                db.SaveChanges();
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+
+
+                
                 return RedirectToAction("Index");
             }
 
@@ -115,7 +135,29 @@ namespace MVC5.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Client client = db.Client.Find(id);
+            //var order = client.Order;
+
+
+
+            //foreach(var item in order)
+            //{
+            //    var OrderLine = item.OrderLine;
+            //    db.OrderLine.RemoveRange(OrderLine);
+
+            //}
+            //db.Order.RemoveRange(order);
+
+
+
+            foreach (var ord in client.Order.ToList())
+            {
+                var ol = ord.OrderLine;
+                db.OrderLine.RemoveRange(ol);
+                //db.Order.Remove(ord);            
+            }
+            db.Order.RemoveRange(client.Order);
             db.Client.Remove(client);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
