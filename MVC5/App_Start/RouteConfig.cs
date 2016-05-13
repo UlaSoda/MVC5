@@ -16,8 +16,28 @@ namespace MVC5
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                //url: "{controller}/{action}.php/{id}",
+                defaults: new
+                {
+                    controller = "Home",
+                    action = "Index",
+                    id = UrlParameter.Optional
+                }
             );
+            //, constraints: new { id = @"\d+" });
+            /*
+            routes.MapRoute(
+                name: "DefaultIndex",
+                url: "",
+                //url: "{controller}/{action}.php/{id}",
+                defaults: new
+                {
+                    controller = "Home",
+                    action = "Index",
+                }
+            );
+            */
+
         }
     }
 }

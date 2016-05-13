@@ -5,8 +5,20 @@ namespace MVC5.Models
     using System.ComponentModel.DataAnnotations;
     
     [MetadataType(typeof(ClientMetaData))]
-    public partial class Client
+    public partial class Client : IValidatableObject
     {
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (this.CreditRating.HasValue && (int)this.CreditRating % 2 != 0)
+            {
+                yield return new ValidationResult("必須為偶數!!" , new[] { "CreditRating" });
+            }
+            if(!String.IsNullOrEmpty(this.FirstName) && this.FirstName.Length < 5)
+            {
+                yield return new ValidationResult("名稱長度應大於5!!", new[] { "FirstName" });
+
+            }
+        }
     }
     
     public partial class ClientMetaData
@@ -26,6 +38,8 @@ namespace MVC5.Models
         [StringLength(1, ErrorMessage="欄位長度不得大於 1 個字元")]
         public string Gender { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+        //[Odd(ErrorMessage = "欄位應輸入偶數")]//也可oddattribute
+        [Required]
         public Nullable<double> CreditRating { get; set; }
         
         [StringLength(7, ErrorMessage="欄位長度不得大於 7 個字元")]
