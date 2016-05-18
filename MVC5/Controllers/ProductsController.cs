@@ -118,18 +118,34 @@ namespace MVC5.Controllers
 
 
         }
-        public ActionResult AddPrice()
+        public ActionResult AddPrice()//開啟該網頁會自動將價格*2
         {
             var p = db.Product;
             foreach (var item in p)
             {
                 item.Price *= 2;
-                
             }
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        public ActionResult ShowHighPrice()
+        {
+            var p = db.Product;
+            foreach (var item in p)
+            {
+                var Price = item.Price;
+                if (Price > 1000)
+                {
+
+                }
+                else
+                {
+
+                }
+            }
+            return RedirectToAction("Index");
+        }
 
 
         protected override void Dispose(bool disposing)

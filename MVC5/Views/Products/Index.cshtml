@@ -32,7 +32,14 @@
             @Html.DisplayFor(modelItem => item.ProductName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @if (item.Price >= 50)
+            {
+                <strong style="color:red">"@Html.DisplayFor(modelItem => item.Price)</strong>
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.Price)
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Active)

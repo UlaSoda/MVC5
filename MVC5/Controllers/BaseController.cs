@@ -20,10 +20,10 @@ namespace MVC5.Controllers
                 }
                 catch (InvalidOperationException ieox)
                 {
-                    ViewData["error"] = "Unknown Action: \"" +
+                    /*ViewData["error"] = "Unknown Action: \"" +
                         Server.HtmlEncode(actionName) + "\"";
                     ViewData["exMessage"] = ieox.Message;
-                    this.View("Error").ExecuteResult(this.ControllerContext);
+                    this.View("Error").ExecuteResult(this.ControllerContext);*/
                 }
             }
             else

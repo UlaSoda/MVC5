@@ -151,14 +151,10 @@ namespace MVC5.Controllers
             Client client = ClientRepo.Find(id);
             /*
             var order = client.Order;
-
-
-
             foreach (var item in order)
             {
                 var OrderLine = item.OrderLine;
                 db.OrderLine.RemoveRange(OrderLine);
-
             }
             db.Order.RemoveRange(order);*/
 
