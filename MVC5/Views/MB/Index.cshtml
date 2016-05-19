@@ -1,0 +1,23 @@
+﻿@model MVC5.Models.Product
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+Model.ProductName = @Model.ProductName
+
+<br />
+
+@{
+
+    var product = ViewBag.Product as MVC5.Models.Product;
+
+}
+ViewBag.Product = @product.ProductName
+<br />
+
+@{
+    var product2 = ViewBag.product2 as MVC5.Models.Product;
+
+}
+ViewBaf.Product222asdasdasd2 = @product2.ProductName

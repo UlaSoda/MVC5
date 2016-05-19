@@ -24,6 +24,9 @@ namespace MVC5.Controllers
             var client = ClientRepo.All();
 
             return View(client.ToList());
+            string str = "";
+            str.Richard();//可直接呼叫擴充方法
+            str.Dana();//str : 呼叫方法的字串
         }
 
         // GET: Clients/Details/5

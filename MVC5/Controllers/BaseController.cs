@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC5.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace MVC5.Controllers
 {
     public class BaseController : Controller
     {
+        public FabricsEntities db = new FabricsEntities();
         // GET: Base
         protected override void HandleUnknownAction(string actionName)
         {
