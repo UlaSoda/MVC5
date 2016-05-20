@@ -421,6 +421,10 @@
     <Content Include="Views\MB\Index.cshtml" />
     <Content Include="Views\MB\TempDate2.cshtml" />
     <Content Include="Views\MB\Simple1.cshtml" />
+    <Content Include="Views\MB\Complex2.cshtml" />
+    <Content Include="Views\MB\Complex2ex.cshtml" />
+    <Content Include="Views\MB\Complex3.cshtml" />
+    <Content Include="Views\MB\Complex4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

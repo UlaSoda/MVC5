@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MVC5.Models.SimpleViewModel>
+
+@{
+    ViewBag.Title = "Complex4";
+}
+
+
+@{ 
+    var item = Model.ToArray();
+}
+<h2>Complex4</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConfirmPassword)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    
+    @for (int i = 0; i < item.Length; i++)
+    {
+        <tr>
+            <td>
+                @Html.EditorFor(modelitem => item[i].UserName)
+            </td>
+            <td>
+                @Html.EditorFor(modelitem => item[i].Password)
+            </td>
+            <td>
+                @Html.EditorFor(modelitem => item[i].ConfirmPassword)
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Update" class="btn btn-default" />
+    </div>
+</div>
+}
