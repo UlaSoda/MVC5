@@ -3,7 +3,7 @@
 }
 
 <h2>Index</h2>
-
+@*強型別傳值*@
 Model.ProductName = @Model.ProductName
 
 <br />
@@ -13,6 +13,7 @@ Model.ProductName = @Model.ProductName
     var product = ViewBag.Product as MVC5.Models.Product;
 
 }
+
 ViewBag.Product = @product.ProductName
 <br />
 
@@ -20,4 +21,5 @@ ViewBag.Product = @product.ProductName
     var product2 = ViewBag.product2 as MVC5.Models.Product;
 
 }
+@*強型別傳值 須轉型↑*@
 ViewBaf.Product222asdasdasd2 = @product2.ProductName

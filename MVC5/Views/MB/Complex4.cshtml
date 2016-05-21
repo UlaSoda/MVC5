@@ -3,15 +3,15 @@
 @{
     ViewBag.Title = "Complex4";
 }
-
+@*  因為要想辦法把表單的欄位名稱弄出 item[i].欄位名稱，因此宣告一個item把原本的model轉成陣列
+    把原本的item.欄位名稱改成item[i].欄位名稱
+*@
 
 @{ 
     var item = Model.ToArray();
 }
 <h2>Complex4</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@*將原本List變成表單需補上表單的語法*@
 @using (Html.BeginForm())
 {
     <table class="table">
@@ -24,9 +24,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ConfirmPassword)
-            </th>
-            <th>
-
             </th>
         </tr>
     
@@ -42,15 +39,13 @@
             <td>
                 @Html.EditorFor(modelitem => item[i].ConfirmPassword)
             </td>
-            <td>
-                
-            </td>
         </tr>
     }
 
 
 
 </table>
+@*補上表單送出按鈕*@
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
         <input type="submit" value="Update" class="btn btn-default" />
