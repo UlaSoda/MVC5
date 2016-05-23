@@ -15,18 +15,18 @@ namespace MVC5.Controllers
         {
             if(this.ControllerContext.HttpContext.Request.HttpMethod.ToUpper() == "GET")
             {
-                //this.View(actionName).ExecuteResult(this.ControllerContext);
-                try
-                {
-                    this.View(actionName).ExecuteResult(this.ControllerContext);
-                }
-                catch (InvalidOperationException ieox)
-                {
-                    /*ViewData["error"] = "Unknown Action: \"" +
-                        Server.HtmlEncode(actionName) + "\"";
-                    ViewData["exMessage"] = ieox.Message;
-                    this.View("Error").ExecuteResult(this.ControllerContext);*/
-                }
+                this.View(actionName).ExecuteResult(this.ControllerContext);
+                //try
+                //{
+                //    this.View(actionName).ExecuteResult(this.ControllerContext);
+                //}
+                //catch (InvalidOperationException ieox)
+                //{
+                //    /*ViewData["error"] = "Unknown Action: \"" +
+                //        Server.HtmlEncode(actionName) + "\"";
+                //    ViewData["exMessage"] = ieox.Message;
+                //    this.View("Error").ExecuteResult(this.ControllerContext);*/
+                //}
             }
             else
             {

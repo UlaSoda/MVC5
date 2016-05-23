@@ -15,9 +15,10 @@ namespace MVC5.Controllers
         private FabricsEntities db = new FabricsEntities();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string StartString = "" , int Price = 0)//Products?StartString=c&Price=10
         {
-            return View(db.Product.ToList());
+            var product = db.Product.Where(p => p.ProductName.StartsWith(StartString) &&  p.Price > Price);
+            return View(product.Take(10).ToList());
         }
 
         // GET: Products/Details/5

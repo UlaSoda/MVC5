@@ -19,7 +19,7 @@ namespace MVC5.Controllers
         {
             return View();
         }
-        public ContentResult ContentResult()
+        public ActionResult ContentResult()
         {
             //return Content("<ROOT><TEXT>123</TEXT></ROOT>", "text/xml", System.Text.Encoding.UTF8);
             return (Content("<ROOT><TEXT>123</TEXT></ROOT>", "text/plain",System.Text.Encoding.UTF8));

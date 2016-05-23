@@ -106,12 +106,31 @@ namespace MVC5.Controllers
         //複製simple1結果的html修改
         public ActionResult Complex2ex()
         {
+            //可有可無:會自動配對的原因?
+            //ViewBag.item1 = new SimpleViewModel();
+            //ViewBag.item2 = new SimpleViewModel();
+
             return View();
         }
         [HttpPost]
-        public ActionResult Complex2ex(SimpleViewModel item1, SimpleViewModel item2)
+        public ActionResult Complex2ex(
+            [Bind(Include ="Username , Password, ConfirmPassword")] //要驗證的欄位
+            SimpleViewModel item1,
+            [Bind(Include ="Username , Password, ConfirmPassword")] //要驗證的欄位
+            SimpleViewModel item2)
         {
-            return Content("Complex1ex : " + item1.UserName + "/" + item1.Password + "/" + item1.ConfirmPassword + "<br/>"
+            
+            //驗證失敗
+            if (!ModelState.IsValid)
+            {
+                //可有可無
+                //ViewBag.item1 = item1;
+                //ViewBag.item2 = item2;
+                //return View("Complex2ex", item1);
+                return View();
+            }
+            //驗證成功
+            return Content("Complex2ex : " + item1.UserName + "/" + item1.Password + "/" + item1.ConfirmPassword + "<br/>"
                 + "Complex2ex : " + item2.UserName + "/" + item2.Password + "/" + item2.ConfirmPassword);
         }
         //強迫前綴詞要item,即item.欄位名稱(ex item.UserName)
@@ -135,19 +154,27 @@ namespace MVC5.Controllers
                        {
                             UserName = p.FirstName,
                             Password = p.LastName,
-                            ConfirmPassword = p.MiddleName
+                            ConfirmPassword = p.LastName
                        };
-            return View(data.Take(3)); 
+            return View(data.Take(5)); 
         }
         //因為IList<T>,強迫前綴詞要item,即item.欄位名稱
         [HttpPost]
-        public ActionResult Complex4(IList<SimpleViewModel> item)
+        [ValidateAntiForgeryToken]
+        public ActionResult Complex4(
+            [Bind(Include ="Username , Password, ConfirmPassword")] //要驗證的欄位
+            IList<SimpleViewModel> item)
         {
+            //驗證失敗
+            if(!ModelState.IsValid)
+            {
+                return View("Complex4", item);
+                
+            }
+
+            //驗證成功
             StringBuilder sb = new StringBuilder();
-            sb.Append("Complex4 : ");
-            //if(item != null)
-            //    sb.Append(item[0].UserName);
-            
+            sb.Append("Complex4 : ");            
             for (int i = 0; i < item.Count; i++)
             {
                 sb.Append(item[i].UserName + " / " + item[i].Password + "/" + item[i].ConfirmPassword);

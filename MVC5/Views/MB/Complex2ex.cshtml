@@ -7,8 +7,11 @@
 <h2>Complex2ex</h2>
 
 @{ 
-    var item1 = new MVC5.Models.SimpleViewModel();
-    var item2 = new MVC5.Models.SimpleViewModel();
+    //var item1 = new MVC5.Models.SimpleViewModel();
+    //var item2 = new MVC5.Models.SimpleViewModel();
+    @*以下內容可有可無*@
+    var item1 = ViewBag.Item1 as MVC5.Models.SimpleViewModel;
+    var item2 = ViewBag.Item2 as MVC5.Models.SimpleViewModel;
 
 
 }
@@ -19,6 +22,7 @@
     <div class="form-horizontal">
         <h4>SimpleViewModel 1</h4>
         <hr />
+        @*前端驗證1*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => item1.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -35,7 +39,7 @@
                 @Html.ValidationMessageFor(model => item1.Password, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        @*前端驗證2 :錯誤訊息位置*@
         <div class="form-group">
             @Html.LabelFor(model => item1.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -82,7 +86,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
+@*前端驗證3:javascript*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

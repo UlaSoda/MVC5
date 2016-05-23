@@ -12,8 +12,14 @@
 }
 <h2>Complex4</h2>
 @*將原本List變成表單需補上表單的語法*@
+@*NameFor可察看browser欄位id*@
+@*匿名物件 - CS$<>8__locals1 *@
+@*使用nuget移除Microsoft.CodeDom.Providers.DotNetCompilerPlatform套件*@
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
     <table class="table">
         <tr>
             <th>
@@ -25,30 +31,43 @@
             <th>
                 @Html.DisplayNameFor(model => model.ConfirmPassword)
             </th>
+
         </tr>
-    
+        
     @for (int i = 0; i < item.Length; i++)
     {
         <tr>
             <td>
                 @Html.EditorFor(modelitem => item[i].UserName)
+                @Html.ValidationMessageFor(modelitem => item[i].UserName, "", new { @class = "text-danger" })
+
             </td>
             <td>
                 @Html.EditorFor(modelitem => item[i].Password)
+                @Html.ValidationMessageFor(modelitem => item[i].Password, "", new { @class = "text-danger" })
+
             </td>
             <td>
                 @Html.EditorFor(modelitem => item[i].ConfirmPassword)
+                @Html.ValidationMessageFor(modelitem => item[i].ConfirmPassword, "", new { @class = "text-danger" })
             </td>
+
         </tr>
     }
 
-
-
-</table>
+    </table>
 @*補上表單送出按鈕*@
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
         <input type="submit" value="Update" class="btn btn-default" />
     </div>
 </div>
+
 }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
